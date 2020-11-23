@@ -60,8 +60,47 @@
             {{ form.confirm_password(placeholder='confirm password',class="form-control form-control-lg") }}
         {% endif %}
     </div>
-    </fieldset>
+    
+    <div class="input-group form-group">
+        {% if form.phone.errors %}
+            {{ form.phone(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.phone.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.phone(placeholder='phone',class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    
+    <div class="input-group form-group">
+        {% if form.address.errors %}
+            {{ form.address(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.address.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.address(placeholder='address',class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    
+    <div class="input-group form-group">
+        {% if form.address2.errors %}
+            {{ form.address2(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.address2.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.address2(placeholder='address2',class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
 
+    </fieldset>
     <div class="form-group">
     {{ form.submit(class="btn btn-block px-5 btn-outline-secondary register_btn") }}
     </div>

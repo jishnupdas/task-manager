@@ -20,7 +20,7 @@ def create_task():
         task_name   = form.task_name.data
         task_detail = form.task_detail.data
         task_date   = form.task_date.data
-        assigned_to = str(form.assigned_to.data)
+        assigned_to = form.assigned_to.data
         
         task = Task(id=len(tasks)+1,task_name=task_name,task_detail=task_detail,task_date=task_date,
                     assigned_to=assigned_to,assigned_by=user.username,assigner_mail = user.email,
