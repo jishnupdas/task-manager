@@ -1,0 +1,12 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block scripts %}
+  {{ super() }}
+  {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
+  {{ datepicker.picker(id=".dp") }}
+{% endblock %}
+{% block content %}
+  <form class="verticalform">
+    <input type="text" class="form-control dp" />
+  </form>
+{% endblock %}

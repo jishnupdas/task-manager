@@ -10,3 +10,9 @@
 .form-signin{
     width:90%;
 }
+
+.task{width:900px;
+    overflow:hidden;
+    margin:30px auto;
+    display:grid;
+    place-items:center;}

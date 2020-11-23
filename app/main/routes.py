@@ -10,4 +10,4 @@ main = Blueprint('main', __name__)
 @main.route('/home', methods=['GET', 'POST'])
 def home():
     #tasks = Task.query.all()
-    return render_template('home.html')
+    return render_template('test.html')

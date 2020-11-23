@@ -4,14 +4,46 @@
 {% block content %}
 
 
-<div class="login-card text-center">
-    <form class="form-signin" method='POST' action='/login'>       
-        <h2 class="form-signin-heading">Please login</h2>
-        <input type="text" class="my-2 input-group form-control" name="username" placeholder="Email Username" required="" autofocus="" />
-        <input type="password" class="my-2 input-group form-control" name="password" placeholder="Password" required=""/>      
-        <input class="btn btn-light btn-primary btn-block" type="submit" name="login"/>
-    </form>
-</div>
+<form method="POST" action="">
+    <div class="login-card">
+    {{ form.hidden_tag() }}
+    <h1 class='display-4'> Login </h1>
+    <fieldset class="form-group">
+        <div class="input-group form-group">
+        {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.email(placeholder='email',class="form-control form-control-lg") }}
+        {% endif %}
+        </div>
+        <div class="input-group form-group">
+        {% if form.password.errors %}
+            {{ form.password(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.password(placeholder='password',class="form-control form-control-lg") }}
+        {% endif %}
+        </div>
+        <div class="form-check">
+            {{ form.remember(class="form-check-label") }}
+            {{ form.remember.label(class="form-check-label remember") }}
+        </div>
+    </fieldset>
+
+    <div class="form-group">
+    {{ form.submit(class="btn btn-block px-5 btn-outline-secondary login_btn") }}
+    </div>
+    </div>
+</form>
 
 
 {% endblock content %}
