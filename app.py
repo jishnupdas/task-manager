@@ -70,8 +70,8 @@ class Task(db.Model):
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
 def home():
-    tasks = Task.query.all()
-    return render_template('home.html',tasks=tasks)
+    #tasks = Task.query.all()
+    return render_template('home.html')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
