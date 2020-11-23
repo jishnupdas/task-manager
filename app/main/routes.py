@@ -12,11 +12,6 @@ def home():
     tasks = Task.query.all()
     return render_template('tasker/dashboard.html',tasks=tasks)
 
-@main.route('/dashboard', methods=['GET','POST'])
-def dashboard():
-    tasks = Task.query.all()
-    return render_template('tasker/dashboard.html',tasks=tasks)
-
 @login_required
 @main.route('/user_list')
 def user_list():
