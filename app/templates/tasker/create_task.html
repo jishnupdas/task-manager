@@ -64,7 +64,7 @@
             
             <div class="form-group">
             <h5>{{ form.assigned_to.label(class="form-control-label") }}</h5>
-                <select class="user custom-select">
+                <select id="user" class="custom-select">
                     {% for user in users %}
                         <option value="{{user.username}}" SELECTED>{{user.username}}</option>"
                     {% endfor %}
@@ -92,30 +92,36 @@
 </div>
 
 <script>
-var user_select = document.getElementById("assign");
-function getUsers() {
-    const url = '/user_list'
-    fetch(url)
-    .then(response => response.json())  
-    .then(json => {
-        var optionHTML = '';
-        for (var user of json.users) {
-            optionHTML += '<option value="' + user.username + '">' + user.username + '</option>';
-            }
-        
-        user_select.innerHTML = optionHTML;
-    })
-}
+// var user_select = document.getElementById("assign");
+// function getUsers() {
+//     const url = '/user_list'
+//     fetch(url)
+//     .then(response => response.json())  
+//     .then(json => {
+//         var optionHTML = '';
+//         for (var user of json.users) {
+//             optionHTML += '<option value="' + user.username + '">' + user.username + '</option>';
+//             }
+//         
+//         user_select.innerHTML = optionHTML;
+//     })
+// }
 
 // getUsers();
-var choice = document.getElementsByClassName("user");
 
-console.log(choice.value);
-
-function choose() {
+(function() {
     
+    // get references to select list and display text box
+    var el  = document.getElementById('assign');
 
-}
+    var sel = document.getElementById('user');
+
+    // assign onclick handlers to the buttons
+    document.getElementById('user').onclick = function () {
+        el.value = sel.value;    
+    }
+    
+}());
 
 </script>
 
