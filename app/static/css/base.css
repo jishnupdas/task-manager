@@ -1,0 +1,12 @@
+
+.login-card{
+    margin:30px auto;
+    display:grid;
+    place-items:center;
+    width:500px;
+    height:auto;
+}
+
+.form-signin{
+    width:90%;
+}

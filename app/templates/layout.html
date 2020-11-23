@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href="base.css" rel="stylesheet"/>
+<!--     <link href="bootstrap.min.css" rel="stylesheet"/> -->
+    <link href="static/css/base.css" rel="stylesheet"/>
 
 <title> Task manager </title>
 
@@ -14,6 +15,7 @@
 
 <!-- Body -->
 <body>
+
 
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -27,6 +29,8 @@
 
 {% block content %}{% endblock %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </body>
 <!-- end body -->
