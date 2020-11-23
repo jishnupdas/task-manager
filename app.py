@@ -9,7 +9,6 @@ from flask_login  import (LoginManager, UserMixin,
                           logout_user, login_required)
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from email.message import EmailMessage
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
