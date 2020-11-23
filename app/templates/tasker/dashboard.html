@@ -3,11 +3,28 @@
 
 {% block content %}
 
+<!-- style tags -->
+<style>
+
+.centered{
+    margin:30px auto;
+    display:grid;
+    place-items:center;
+    }
+
+</style>
+<!-- end style -->
+
+<div class='centered'> 
+
+{% if current_user.is_authenticated %}
+
+<h1 class='display-4'> List of assigned tasks </h1>
 
 <table class="table table-striped w-auto">
     <thead class="thead-dark">
         <tr>
-            <th scope="col"> #           </th>
+            <th scope="col"> ID          </th>
             <th scope="col"> Task        </th>
             <th scope="col"> Description </th>
             <th scope="col"> Assigned by </th>
@@ -16,11 +33,10 @@
             <th scope="col"> Status      </th>
         </tr>
         </thead>
-{% if current_user.is_authenticated %}
     {% for task in tasks %}
         
         <tr>
-        <td id='task_id'>   {{task.task_id}}       </td>
+        <td id='task_id'>   {{task.id}}            </td>
         <td id='task_text'> {{task.task_name}}     </td>
         <td id='task_desc'> {{task.task_detail}}   </td>
         <td id='task_boss'> {{task.assigner_mail}} </td>
@@ -29,9 +45,15 @@
         <td id='status'>    {{task.status}}        </td>
         </tr>
     {% endfor %}
+
+{% else %}
+
+<h1 class='display-4'> Please login to your account </h1>
+<a href="{{url_for('users.login')}}" class="btn mt-5 px-5 btn-dark">Login</a>
+        
 {% endif %}
 </table>
 
-<a href="{{url_for('index')}}" class="btn btn-lg btn-dark">Go back to Home</a>
 
+</div>
 {% endblock content %}

@@ -30,17 +30,32 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.phone}')"
 
+
 class Task(db.Model):
-    task_id     = db.Column(db.Integer, unique=True, primary_key=True)
-    task_name   = db.Column(db.String(150), nullable=False)
-    task_detail = db.Column(db.Text, nullable=True)
-    task_date   = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    assigned_by = db.Column(db.Integer)
-    assigner_mail  = db.Column(db.String(90))
-    assigner_phone = db.Column(db.Integer)
-    assigned_to = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    assignee    = db.relationship('User',lazy=True, uselist=False)
-    status      = db.Column(db.String(50), nullable=False,default='Incomplete')
+    id            = db.Column(db.Integer,    unique=True, primary_key=True)
+    task_name     = db.Column(db.String(150), nullable=False)
+    task_detail   = db.Column(db.String(400), nullable=True)
+    task_date     = db.Column(db.String(20))
+    assigned_by   = db.Column(db.String(20))
+    assigner_mail = db.Column(db.String(90))
+    assigner_phone= db.Column(db.Integer)
+    assigned_to   = db.Column(db.String(20), db.ForeignKey('user.username'), primary_key=True)
+    assignee      = db.relationship('User',lazy=True, uselist=False)
+    status        = db.Column(db.String(50), nullable=False,default='Pending')
+    
+    def serialize(self):
+        return {
+        'task_id'       :self.id       ,
+        'task_name'     :self.task_name     ,
+        'task_detail'   :self.task_detail   ,
+        'task_date'     :self.task_date     ,
+        'assigned_by'   :self.assigned_by   ,
+        'assigner_mail' :self.assigner_mail ,
+        'assigner_phone':self.assigner_phone,
+        'assigned_to'   :self.assigned_to   ,
+        'assignee'      :self.assignee.username,
+        'status'        :self.status
+        }
 
 class Tasklist(db.Model):
     name        = db.Column(db.String(150), unique=True, primary_key=True)

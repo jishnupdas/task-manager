@@ -1,13 +1,4 @@
-{% extends "bootstrap/base.html" %}
-
-{% block title %}
-Create Task
-{% endblock %}
-{% block scripts %}
-    {{ super() }}
-    {{ datepicker.loader(theme="base") }} {# to load jQuery-ui #}
-    {{ datepicker.picker(id=".dp") }}
-{% endblock %}
+{% extends "layout.html" %}
 
 {% block content %}
 <!-- style tags -->
@@ -15,7 +6,7 @@ Create Task
 
 .task{width:900px;
       overflow:hidden;
-      margin:30px auto;
+      margin:5px auto;
       display:grid;
       place-items:center;}
 
@@ -24,8 +15,8 @@ Create Task
 
 <div class="task">
     <div class="col-md-12 p-3 m-5">
-    <h1 class='display-3'> Create and assign a Task</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
+    <h1 class='display-4'> Create and assign a Task</h1>
+    <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
         
@@ -49,7 +40,7 @@ Create Task
                     {{ form.task_detail(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.task_detail.errors %}
-                            <span>{{ error }}</span>
+                            <span>{{ error }} </span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -63,25 +54,25 @@ Create Task
                     {{ form.task_date(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.task_date.errors %}
-                            <span>{{ error }}</span>
+                            <span>{{ error }} </span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.task_date(placeholder='task_date',class="form-control form-control-lg dp") }}
+                    {{ form.task_date(placeholder='task_date',class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             
             <div class="form-group">
             <h5>{{ form.assigned_to.label(class="form-control-label") }}</h5>
                 {% if form.assigned_to.errors %}
-                    {{ form.assigned_to(class="form-control form-control-lg is-invalid") }}
+                    {{ form.assigned_to(id='assign', class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.assigned_to.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.assigned_to(placeholder='assigned_to',class="form-control form-control-lg") }}
+                    {{ form.assigned_to(id='assign', class="form-control form-control-lg") }}
                 {% endif %}
             </div>
         
@@ -90,5 +81,28 @@ Create Task
         <div class="form-group">
             {{ form.submit(class="btn btn-block px-5 btn-info") }}
         </div>
+    
+    </form>
+    </div>
+</div>
+
+<script>
+var user_select = document.getElementById("assign");
+function getUsers() {
+    const url = '/user_list'
+    fetch(url)
+    .then(response => response.json())  
+    .then(json => {
+        var optionHTML = '';
+        for (var user of json.users) {
+            optionHTML += '<option value="' + user.username + '">' + user.username + '</option>';
+            }
+        
+        user_select.innerHTML = optionHTML;
+    })
+}
+
+getUsers();
+</script>
 
 {% endblock %}
