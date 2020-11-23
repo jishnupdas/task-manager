@@ -6,7 +6,6 @@ from flask_bcrypt     import Bcrypt
 from flask_login      import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap  import Bootstrap
-from flask_datepicker import datepicker
 
 enable_search = True
 
@@ -22,7 +21,6 @@ def create_app(config_class=Config):
     application.config.from_object(Config)
     
     Bootstrap(application)
-    datepicker(application)
     
     db.init_app(application)
     bcrypt.init_app(application)
