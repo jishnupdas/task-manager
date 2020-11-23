@@ -64,6 +64,11 @@
             
             <div class="form-group">
             <h5>{{ form.assigned_to.label(class="form-control-label") }}</h5>
+                <select class="user custom-select">
+                    {% for user in users %}
+                        <option value="{{user.username}}" SELECTED>{{user.username}}</option>"
+                    {% endfor %}
+                </select>
                 {% if form.assigned_to.errors %}
                     {{ form.assigned_to(id='assign', class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
@@ -102,7 +107,16 @@ function getUsers() {
     })
 }
 
-getUsers();
+// getUsers();
+var choice = document.getElementsByClassName("user");
+
+console.log(choice.value);
+
+function choose() {
+    
+
+}
+
 </script>
 
 {% endblock %}

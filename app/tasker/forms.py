@@ -10,5 +10,5 @@ class AddTaskForm(FlaskForm):
     task_name   = StringField('Task', validators=[DataRequired()])
     task_detail = TextAreaField('Task description', validators=[Optional()])
     task_date   = DateField('Due date', format='%Y-%m-%d')
-    assigned_to = StringField('Assigned to')
+    assigned_to = StringField('Assigned to', validators=[DataRequired()])
     submit      = SubmitField('Add task')

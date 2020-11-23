@@ -13,6 +13,7 @@ def create_task():
     
     form = AddTaskForm()
     
+    users = User.query.all()
     tasks = Task.query.all()
     
     if form.validate_on_submit():
@@ -33,7 +34,7 @@ def create_task():
         return redirect(request.referrer)
         
     
-    return render_template('tasker/create_task.html', form=form)
+    return render_template('tasker/create_task.html', form=form,users=users)
 
 
 @login_required
